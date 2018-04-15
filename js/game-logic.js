@@ -152,16 +152,11 @@ const getGameWinner = () => {
     return null;
   }
 
-  let r1winner = getRoundWinner(1);
-  let r2winner = getRoundWinner(2);
-  let r3winner = getRoundWinner(3);
-
-
   p1wins = 0;
   p2wins = 0;
-  incrementScores(r1winner);
-  incrementScores(r2winner);
-  incrementScores(r3winner);
+  incrementScores(getRoundWinner(1));
+  incrementScores(getRoundWinner(2));
+  incrementScores(getRoundWinner(3));
 
   if (p1wins === p2wins) {
     return TIE;
@@ -216,9 +211,9 @@ const setPlayer2MoveValues = ()=> {
 
   playerTwoMoveThreeValue = remaining + 1;
 
-  console.log(`
-    p2v1 = ${playerTwoMoveOneValue}
-    p2v2 = ${playerTwoMoveTwoValue}
-    p2v3 = ${playerTwoMoveThreeValue}
-  `);
+  //console.log(`
+  //  p2v1 = ${playerTwoMoveOneValue}
+  //  p2v2 = ${playerTwoMoveTwoValue}
+  //  p2v3 = ${playerTwoMoveThreeValue}
+  //`);
 };
