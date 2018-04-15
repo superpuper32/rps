@@ -183,5 +183,42 @@ const incrementScores = winner => {
 };
 
 const setComputerMoves = () => {
+  setPlayer2MoveTypes();
+  setPlayer2MoveValues();
+};
 
+const setPlayer2MoveTypes = () => {
+  playerTwoMoveOneType = getRandomType();
+  playerTwoMoveTwoType = getRandomType();
+  playerTwoMoveThreeType = getRandomType();
+};
+
+const randomInteger = n => Math.floor(Math.random() * n);
+
+const getRandomType = () => {
+  switch (randomInteger(3)) {
+    case 0: return ROCK;
+    case 1: return PAPER;
+    case 2: return SCISSORS;
+  }
+};
+
+const setPlayer2MoveValues = ()=> {
+  // each value must be at least 1, leaves 96 point to distribute
+  let remaining = 96;
+  let portion = randomInteger(remaining);
+  playerTwoMoveOneValue = portion + 1;
+  remaining -= portion;
+
+  portion = randomInteger(remaining);
+  playerTwoMoveTwoValue = portion + 1;
+  remaining -= portion;
+
+  playerTwoMoveThreeValue = remaining + 1;
+
+  console.log(`
+    p2v1 = ${playerTwoMoveOneValue}
+    p2v2 = ${playerTwoMoveTwoValue}
+    p2v3 = ${playerTwoMoveThreeValue}
+  `);
 };
