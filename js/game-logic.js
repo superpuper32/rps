@@ -67,14 +67,75 @@ const validType = (type) => type === ROCK || type === PAPER || type === SCISSORS
 const validValues = (v1, v2, v3) =>
   v1 >= 1 && v2 >= 1 && v3 >= 1 && v1 + v2 + v3 <= 99;
 
-const getRoundWinner = () => {
+const getRoundWinner = round => {
+  let p1t;
+  let p1v;
+  let p2t;
+  let p2v;
 
-}
+  switch (round) {
+    case 1:
+      p1t = playerOneMoveOneType;
+      p1v = playerOneMoveOneValue;
+      p2t = playerTwoMoveOneType;
+      p2v = playerTwoMoveOneValue;
+      break;
+
+    case 2:
+      p1t = playerOneMoveTwoType;
+      p1v = playerOneMoveTwoValue;
+      p2t = playerTwoMoveTwoType;
+      p2v = playerTwoMoveTwoValue;
+      break;
+
+    case 3:
+      p1t = playerOneMoveThreeType;
+      p1v = playerOneMoveThreeValue;
+      p2t = playerTwoMoveThreeType;
+      p2v = playerTwoMoveThreeValue;
+      break;
+
+    default:
+      return null;
+  }
+
+  return evaluateMove(p1t, p1v, p2t, p2v);
+};
+
+
+const evaluateMove = (p1t, p1v, p2t, p2v) => {
+  // ensure that all moves are present
+  if (!p1t || !p1v || !p2t || !p2v) {
+    return null;
+  }
+
+  // if types are the same, winner is based on the highest value
+  if (p1t === p2t) {
+    if (p1v === p2v) {
+      return TIE;
+    }
+    return p1v > p2v ? P1 : P2;
+  }
+
+  // types are different, rules RPS are apply
+  switch (p1t) {
+    case ROCK:
+      return p2t === SCISSORS ? P1 : P2;
+
+    case PAPER:
+      return p2t === ROCK ? P1 : P2;
+
+    case SCISSORS:
+      return p2t === PAPER ? P1 : P2;
+
+  }
+};
+
 
 const getGameWinner = () => {
 
-}
+};
 
 const setComputerMoves = () => {
 
-}
+};
