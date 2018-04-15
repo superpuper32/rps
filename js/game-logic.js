@@ -134,7 +134,24 @@ const evaluateMove = (p1t, p1v, p2t, p2v) => {
 let p1wins;
 let p2wins;
 
+const allGlobalsDefined = () => playerOneMoveOneType &&
+  playerOneMoveOneValue &&
+  playerTwoMoveOneType &&
+  playerTwoMoveOneValue &&
+  playerOneMoveTwoType &&
+  playerOneMoveTwoValue &&
+  playerTwoMoveTwoType &&
+  playerTwoMoveTwoValue &&
+  playerOneMoveThreeType &&
+  playerOneMoveThreeValue &&
+  playerTwoMoveThreeType &&
+  playerTwoMoveThreeValue;
+
 const getGameWinner = () => {
+  if (!allGlobalsDefined()) {
+    return null;
+  }
+
   let r1winner = getRoundWinner(1);
   let r2winner = getRoundWinner(2);
   let r3winner = getRoundWinner(3);
