@@ -131,9 +131,38 @@ const evaluateMove = (p1t, p1v, p2t, p2v) => {
   }
 };
 
+let p1wins;
+let p2wins;
 
 const getGameWinner = () => {
+  let r1winner = getRoundWinner(1);
+  let r2winner = getRoundWinner(2);
+  let r3winner = getRoundWinner(3);
 
+
+  p1wins = 0;
+  p2wins = 0;
+  incrementScores(r1winner);
+  incrementScores(r2winner);
+  incrementScores(r3winner);
+
+  if (p1wins === p2wins) {
+    return TIE;
+  }
+
+  return p1wins > p2wins ? P1 : P2;
+};
+
+const incrementScores = winner => {
+  switch (winner) {
+    case P1:
+      p1wins += 1;
+      break;
+
+    case P2:
+      p2wins += 1;
+      break;
+  }
 };
 
 const setComputerMoves = () => {
